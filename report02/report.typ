@@ -134,9 +134,103 @@ $
 よって、両辺を $x$ で積分すると、
 
 $
-integral (1 - v) / v dif v = integral -1/x dif x
+integral (1 - v) / v dif v = integral -1/x dif x \
+=> log abs(v) - v = - log abs(x) + c \
+=> v e^(-v) = A / x
 $
 
+ただし、$A$ は正の実数 $(because A = e^c > 0)$
+
 === (5)
+
+与えられた式を変形すると、
+
+$
+x dv(y, x) - y = 2 x^2 + 3 => dv(y, x) - 1/x y - 2x - 3/x = 0
+$
+
+1 階線形微分方程式とみなして、$p(x) = -1/x, q(x) = -2x - 3/x$ とおく。
+
+$
+accent(z, macron)(x) &= integral p(x) dif x = -log abs(x) \
+z(x) &= e^(-accent(z, macron)(x)) = e^(log abs(x)) = abs(x) \
+s(x) &= integral q(x) / z(x) dif x = integral (2x^2 + 3) dif x = 2/3 x^3 + 3x
+$
+
+よって、一般解は
+
+$
+y = abs(x) ( -2/3 x^3 - 3x + c)
+$
+
 === (6)
+
+与えられた式を変形すると、
+
+$
+dv(y, x) - y tan x = cos x <=> dv(y, x) - y tan x - cos x = 0
+$
+
+1 階線形微分方程式とみなして、$p(x) = -tan x, q(x) = -cos x$ とおく。
+
+
+$
+accent(z, macron)(x) &= integral p(x) dif x = log abs(cos x) \
+z(x) &= e^(-accent(z, macron)(x)) = e^(-log abs(cos x)) = -abs(cos x) \
+s(x) &= integral q(x) / z(x) dif x = integral (cos x) / abs(cos x) dif x = x
+$
+
+よって、一般解は
+
+$
+y = -abs(cos x)( -x + c )
+$
+
 === (7)
+
+$p(x) = 1/x, q(x) = x^2$ とおく。
+
+$z = y^(-2)$ とおき、これを微分すると、
+
+$
+z' = -2y^(-3)y' \
+therefore y^3 z' = -2y' \
+therefore y' = - y^3 / 2 z'
+$
+
+よって、
+
+$
+- y^3 / 2 z' + p(x) y = q(x) y^3 \
+=> -z' / 2 + p(x) y^(-2) = q(x) \
+therefore -z'/2 + p(x) z = q(x) \
+therefore z' - 2p(x) z + 2 q(x) = 0
+$
+
+1 階線形微分方程式とみなして、これを解くと、
+
+$
+accent(z, macron)(x) &= integral -2p(x) dif x = -2 log abs(x) \
+z(x) &= e^(-accent(z, macron)(x)) = e^(-2 log abs(x)) = 1 / x^2 \
+s(x) &= integral q(x) / z(x) dif x = integral -2 x^4 dif x = -2 / 5 x^5
+$
+
+よって、
+
+$
+z = 1 / x^2 (2 / 5 x^5 + c) <=> y^(-2) = 1 / x^2 (2 / 5 x^5 + c) = 2 / 5 x^3 + c/x^2
+$
+
+であるから、一般解は
+
+$
+y = -1 / sqrt( 2/5 x^3 + c/x^2 )
+$
+
+$(x, y) = (-1, 1)$ を満たす解は、
+
+$
+y = -1 / sqrt( 2/5 x^3 + 3 / (5 x^2))
+$
+
+== 問題 2
