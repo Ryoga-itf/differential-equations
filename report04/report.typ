@@ -38,7 +38,7 @@
     if (k.n / k.m > 0) {
       $a sin #disp_l x + b cos #disp_l x$
     } else {
-      $a e^(#disp_l x) + b e^(#disp_l x)$
+      $a e^(#get_expo(l) x) + b e^(#get_expo(mul_frac(frac(-1), l))x)$
     }
   }
 
@@ -51,7 +51,8 @@
       $(a sin #disp_l x + b cos #disp_l x) e^(#get_expo(mul_frac(pdiv, frac(-1)))x)$
     } else {
       let w = sub_frac(l, div_frac(p, frac(2)))
-      $a e^(#get_expo(w) x) + b e^(#get_expo(w)x)$
+      let o = sub_frac(mul_frac(frac(-1), l), div_frac(p, frac(2)))
+      $a e^(#get_expo(w) x) + b e^(#get_expo(o)x)$
     }
   }
 
@@ -62,7 +63,7 @@
     $
     となる。これは標準形。
 
-    また、これは $lambda = plus.minus #display_frac(l)$ のときに相当。
+    また、これは $lambda = plus.minus #display_frac(l) #(if l.n/l.m < 0 {$i$})$ のときに相当。
     これの一般解は、
     $
       z(x) = #z_ans
@@ -110,7 +111,7 @@ $
 #question1(frac(3), frac(5, m: 2))
 
 
-=== (5)
+=== (6)
 
 両辺を $3$ で割ると、
 
@@ -119,3 +120,5 @@ y'' - 1/3 y' - 2/3 y = 0
 $
 
 #question1(frac(-1, m: 3), frac(-2, m: 3))
+
+== 問題 2
