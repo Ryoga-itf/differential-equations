@@ -1,78 +1,68 @@
 #import "../template.typ": *
 #import "@preview/tenv:0.1.1": parse_dotenv
 #import "@preview/physica:0.9.2": *
+#import "../utils/fraction.typ": *
 
-#let env = parse_dotenv(read("./.env"))
+#let env = parse_dotenv(read("../.env"))
 
 #show: project.with(
   week: "第4回",
   authors: (
     (name: env.STUDENT_NAME, email: "学籍番号：" + env.STUDENT_ID, affiliation: "所属：情報科学類"),
   ),
-  date: "2024 年 10 月 31 日",
+  date: "2024 年 10 月 30 日",
 )
 
 #show math.equation: set text(font: ("New Computer Modern Math", "Noto Serif", "Noto Serif CJK JP"))
 
-#let get_expo(p, q) = {
-  if (calc.rem(p, q) != 0) {
-    if (p / q < 0) {
-      $- #calc.abs(p) / #calc.abs(q)$
-    } else {
-      $#calc.abs(p) / #calc.abs(q)$
-    }
-  } else { 
-    if (p / q == 1) {
-      $$
-    } else if (p / q == -1) {
-      $-$
-    } else {
-      $#{p / q}$
-    }
+#let get_expo(f) = {
+  let d = f.n / f.m
+  if (d == 1) {
+    $$
+  } else if (d == -1) {
+    $-$
+  } else {
+    display_frac(f)
   }
 }
 
 #let question1(p, q) = {
-  let pdiv = get_expo(p, 2)
-  let t = 4 * q - p * p
-  let g = calc.gcd(t, 4)
-  let k = if (g == 4) {
-    if (t / 4 < 0) { $#{t / 4}$ } else { $+ #{t / 4}$ }
-  } else {
-    if (t / 4 < 0) { $- #calc.abs(t / g) / #{4 / g}$ } else { $+ #{t / g} / #{4 / g}$ }
-  }
+  let pdiv = div_frac(p, frac(2))
+  let k = sub_frac(q, div_frac(mul_frac(p, p), frac(4)))
+  let l = sqrt_frac(abs_frac(k))
 
-  let l = int(calc.sqrt(calc.abs(t / 4)))
-
-  let z_ans = if (t / 4 == 0) {
+  let z_ans = if (k.n == 0) {
     $T O D O$
   } else {
-    if (t / 4 > 0) {
-      $a sin #l x + b cos #l x$
+    let disp_l = get_expo(l)
+    if (k.n / k.m > 0) {
+      $a sin #disp_l x + b cos #disp_l x$
     } else {
-      $a e^(#l x) + b e^(#l x)$
+      $a e^(#disp_l x) + b e^(#disp_l x)$
     }
   }
 
 
-  let y_ans = if (t / 4 == 0) {
+  let y_ans = if (k.n == 0) {
     $T O D O$
   } else {
-    if (t / 4 > 0) {
-      $(a sin #l x + b cos #l x) e^(#get_expo(-p, 2) x)$
+    if (k.n / k.m > 0) {
+      let disp_l = display_frac(l)
+      $(a sin #disp_l x + b cos #disp_l x) e^(#get_expo(mul_frac(pdiv, frac(-1)))x)$
     } else {
-      $a e^(#get_expo(2 * l - p, 2) x) + b e^(#get_expo(2 * l - p, 2) x)$
+      let w = sub_frac(l, div_frac(p, frac(2)))
+      $a e^(#get_expo(w) x) + b e^(#get_expo(w)x)$
     }
   }
 
   [
-    $z(x) = e^(#{pdiv} x) y(x)$ とおくと、
+    $z(x) = e^(#get_expo(pdiv) x) y(x)$ とおくと、
     $
-      dv(z, x, 2) #{k}z = 0 \
+      dv(z, x, 2) #display_frac(k, display_sign: true) z = 0
     $
     となる。これは標準形。
 
-    また、これは $lambda = plus.minus #l$ のときに相当。
+    また、これは $lambda = plus.minus #display_frac(l)$ のときに相当。
     これの一般解は、
     $
       z(x) = #z_ans
@@ -89,8 +79,43 @@
 
 === (1)
 
-#question1(-2, 5)
+#question1(frac(-2), frac(5))
 
 === (2)
 
-#question1(4, -5)
+#question1(frac(4), frac(-5))
+
+=== (3)
+
+両辺を $2$ で割ると、
+
+$
+y'' - y' + 5/2 y = 0
+$
+
+#question1(frac(-1), frac(5, m: 2))
+
+=== (4)
+
+#question1(frac(3), frac(-4))
+
+=== (5)
+
+両辺を $2$ で割ると、
+
+$
+y'' + 3 y' + 5/2 y = 0
+$
+
+#question1(frac(3), frac(5, m: 2))
+
+
+=== (5)
+
+両辺を $3$ で割ると、
+
+$
+y'' - 1/3 y' - 2/3 y = 0
+$
+
+#question1(frac(-1, m: 3), frac(-2, m: 3))
