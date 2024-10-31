@@ -226,3 +226,58 @@ $
 $
 
 == 問題 3
+
+#set enum(numbering: "(i)")
+
++ $omega^2 > nu^2 \/ 4$ の場合
+  $
+    x(t)  &= e^(-nu t \/ 2) (a cos Omega t + b sin Omega t) \
+    x'(t) &= - nu/2 e^(-nu t \/ 2) (a cos Omega t + b sin Omega t) + e^(-nu t \/ 2) Omega (-a sin Omega t + b cos Omega t) \
+          &= e^(-nu t \/ 2) (-nu / 2 (a cos Omega t + b sin Omega t) + Omega (-a sin Omega t + b cos Omega t) ) \
+          &= e^(-nu t \/ 2) ((b Omega - (a nu) / 2)cos Omega t + (-a Omega - (b nu) / 2) sin Omega t)  \
+  $
+
+  $x(0) = a = x_0, space x'(0) = b Omega - (a nu) / 2 = 0$ を満たすように $a, b$ を決めると、
+  $
+    a = x_0, space b = (nu x_0) / (2 Omega)
+  $
+  これを代入すると、
+
+  $
+    x(t) &= e^(-nu t \/ 2) (x_0 cos Omega t + (nu x_0) / (2 Omega) sin Omega t) \
+         &= x_0 e^(-nu t \/ 2) (cos Omega t + nu / (2 Omega) sin Omega t)
+  $
+
++ $omega^2 = nu^2 \/ 4$ の場合
+  $
+    x(t)  &= (a + b t) e^(-nu t \/ 2) \
+    x'(t) &= - nu/2 e^(-nu t \/ 2) (a + b t) + e^(-nu t \/ 2) b
+          &= e^(- nu t \/ 2) (-nu/2 (a + b t) + b)
+  $
+
+  $x(0) = a = x_0, space x'(0) = - nu/2 a + b = 0$ を満たすように、$a, b$ を決めると、
+  $
+    a = x_0, space b = (nu x_0) / 2
+  $
+  これを代入すると、
+
+  $
+    x(t) = x_0 (1 + (nu t) / 2) e^(-nu t \/ 2)
+  $
+
++ $omega^2 < nu^2 \/ 4$ の場合
+  $
+    x(t)  &= (a e^(gamma t) + b e^(- gamma t)) e^(- nu t \/ 2) \
+    x'(t) &= - nu / 2 (a e^(gamma t) + b e^(- gamma t)) e^(- nu t \/ 2) + gamma (a e^(gamma t) - b e^(- gamma t)) e^(- nu t \/ 2) \
+  $
+
+  $x(0) = a + b = x_0, space x'(0) = - nu/2 (a + b) + gamma (a - b) = 0$ を満たすように $a, b$ を決めると、
+  $
+    a = x_0 / 2 (1 + nu / (2 gamma)), space b = x_0 / 2 (1 - nu / (2 gamma))
+  $
+  これを代入すると、
+
+  $
+    x(t) &= (x_0 / 2 (1 + nu / (2 gamma)) e^(gamma t) + x_0 / 2 (1 - nu / (2 gamma)) e^(- gamma t) ) e^(-nu t \/ 2) \
+         &= x_0 e^(-nu t \/ 2) (cosh gamma t + nu / (2 gamma) sinh gamma t)
+  $
