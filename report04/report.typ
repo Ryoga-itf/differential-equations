@@ -122,3 +122,107 @@ $
 #question1(frac(-1, m: 3), frac(-2, m: 3))
 
 == 問題 2
+
+#let question2(p, q) = {
+  let Df = sub_frac(mul_frac(p, p), mul_frac(frac(4), q))
+  let D = Df.n / Df.m
+  [
+    特性方程式は、
+    $lambda^2 #display_frac(p, display_sign: true) lambda #display_frac(q, display_sign: true) = 0$
+    である。
+
+    #(if (D > 0) {
+      []
+    } else if (D == 0) {
+      let ans = div_frac(p, frac(-2))
+      [
+        この解は、重解で $lambda = #display_frac(ans)$ である。
+
+        これより、一般解は、
+        $
+          y(x) = (a x + b) e^(#get_expo(ans)x)
+        $
+      ]
+    } else {
+      []
+    })
+  ]
+}
+
+=== (1)
+
+#question2(frac(-8), frac(15))
+
+この解は、実数解2つ $lambda = 3, 5$ である。
+
+これにより、一般解は、
+$
+  y(x) = a e^(3 x) + b e^(5 x)
+$
+
+=== (2)
+
+#question2(frac(8), frac(16))
+
+=== (3)
+
+#question2(frac(-8), frac(32))
+
+この解は、複素数解 2 つ $lambda = 4 plus.minus 4 i$ である。
+
+これにより、一般解は、
+$
+  y(x) &= e^(4 x) (a cos 4 x + b sin 4 x)
+$
+
+=== (4)
+
+与えられた方程式の両辺を $2$ で割ると、
+$
+  y'' - 5/2 y' + 3/2 y = 0
+$
+
+#question2(frac(-5, m: 2), frac(3, m: 2))
+
+この解は、実数解2つ $lambda = 1, 3/2$ である。
+
+これにより、一般解は、
+$
+  y(x) = a e^(x) + b e^(3/2 x)
+$
+
+=== (5)
+
+与えられた方程式の両辺を $2$ で割ると、
+$
+  y'' - 5/2 y' + 2 y = 0
+$
+
+#question2(frac(-5, m: 2), frac(2))
+
+この解は、複素数解 2 つ $lambda = (5 plus.minus sqrt(7) i) / 4$ である。
+
+これにより、一般解は、
+$
+  y(x) &= e^(5/4 x) (a cos sqrt(7)/4 x + b sin sqrt(7)/4 x)
+$
+
+=== (6)
+
+特性方程式は、$lambda^2 - (alpha + beta) lambda + alpha beta = 0$ である。
+
+この解は、$lambda = alpha, beta$
+
+$alpha, beta$ は実数であるから、この方程式は複素数解を持たない。
+
+$alpha = beta$ のとき、一般解は、
+$
+  y(x) = (a x + b) e^(alpha x)
+$
+
+それ以外のとき、一般解は、
+$
+  y(x) = a e^(alpha x) + b e^(beta x)
+$
+
+== 問題 3
