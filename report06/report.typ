@@ -9,7 +9,7 @@
   authors: (
     (name: env.STUDENT_NAME, email: "学籍番号：" + env.STUDENT_ID, affiliation: "所属：情報科学類"),
   ),
-  date: "2024 年 11 月 14 日",
+  date: "2024 年 11 月 15 日",
 )
 
 #show math.equation: set text(font: ("New Computer Modern Math", "Noto Serif", "Noto Serif CJK JP"))
@@ -157,7 +157,91 @@ $
 == 問題2
 
 === (1)
+
+$
+W(1, x^2) &= 2x \
+G(x, x')  &= 1/(2x') (x^2 - x'^2) = 1/2 (x^2 / x' - x')
+$
+
+である。$r(x') = 2x'$ とすると特解は、
+
+$
+Y(x) &= integral^x G(x, x') r(x') dd(x') \
+     &= integral^x (x^2 / x' - x') x' dd(x') \
+     &= integral^x (x^2 / x' - x') x' dd(x') \
+     &= 2/3 x^3 \
+$
+
+よって、$c_1, c_2$ を任意の定数とおくと一般解は、
+
+$
+y(x) = c_1 + c_2 x^2 + 2/3 x^3
+$
+
 === (2)
+
+$
+W(x, x^3) &= x dot 3 x^2 - x^3 dot 1 = 2x^3 \
+G(x, x')  &= 1/(2x'^3) (x^3 x' - x x'^3) = 1/2 (x^3/x'^2 - x)
+$
+
+である。$r(x') = x'^2 e^x'$ とすると特解は、
+
+$
+Y(x) &= integral^x G(x, x') r(x') dd(x') \
+     &= integral^x 1/2(x^2 / x' - x') x'^2 e^x' dd(x') \
+     &= 1/2 [ e^x' ( x^2 (x' - 1) - x'^3 + 3x'^2 - 6x' + 6 ) ]^x \
+     &= e^x ( x^2 - 3x + 3 ) \
+$
+
+よって、$c_1, c_2$ を任意の定数とおくと一般解は、
+
+$
+y(x) = c_1 x + c_2 x^3 + e^x ( x^2 - 3x + 3 )
+$
+
 === (3)
+
+$
+W(x^2, 1/x) &= x^2 dot (-1/x^2) - 1/x dot 2 x = -3 \
+G(x, x')    &= -1/3 (x^2 / x' - x'^2 / x)
+$
+
+である。$r(x') = x'^2$ とすると特解は、
+
+$
+Y(x) &= integral^x G(x, x') r(x') dd(x') \
+     &= integral^x -1/3 (x^2 / x' - x'^2 / x) x'^2 dd(x') \
+     &= -1/3 integral^x (x^2 x' - x'^4 / x) dd(x') \
+     &= -1/3 [ 1/2 x^2 x'^2 - 1/5 x'^5 / x ]^x \
+     &= -1/3 (1/2 x^4 - 1/5 x^4) \
+     &= -1/10 x^4 \
+$
+
+よって、$c_1, c_2$ を任意の定数とおくと一般解は、
+
+$
+y(x) = c_1 x^2 + c_2 / x - 1/10 x^4
+$
+
 === (4)
 
+$
+W(x, 1/x) &= x dot (-1/x^2) - 1/x = -2/x\
+G(x, x')  &= - x/2 (x'/x - x/x') = -1/2 (x' - x^2/x')
+$
+
+である。$r(x') = 2x'^3 + 4x' = 2x'(x'^2 + 2)$ とすると特解は、
+
+$
+Y(x) &= integral^x G(x, x') r(x') dd(x') \
+     &= integral^x (x^2 - x'^2 ) (x'^2 + 2) dd(x') \
+     &= [ 1/3 (x^2 - 2) x'^3 + 2 x^2 x' - x'^5 / 5 ]^x \
+     &= 2/15 x^5 + 4/3 x^3 \
+$
+
+よって、$c_1, c_2$ を任意の定数とおくと一般解は、
+
+$
+y(x) = c_1 x + c_2 /x + 2/15 x^5 + 4/3 x^3
+$
