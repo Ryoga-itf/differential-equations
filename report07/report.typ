@@ -225,6 +225,138 @@ $
 
 == 問題3
 
+#set enum(numbering: "(i)")
+
 === (1)
+
+$x = 0$ で $p(x), q(x)$ は解析的である。
+
+$
+y = sum_(n = 0)^(infinity) c_n x^n
+$
+
+とおくと、
+
+$
+y' = sum_(n = 1)^(infinity) n c_n x^(n - 1) = sum_(n = 0)^(infinity) (n + 1) c_(n + 1) x^n
+$
+
+$x^n$ の項を比較する。
+
++ $n = 0$ のとき、 $c_1 = 1 + 2 c_0$
++ $n = 1$ のとき、 $2 c_2 = 1 + 2 c_1$
++ $n > 1$ のとき、 $(n + 1) c_(n + 1) = 2 c_n$
+
+よって、$2 c_2 = 1 + 2 c_1 = 1 + 2 (1 + 2 c_0) = 3 + 4 c_0$ であるから、
+
+$
+c_2 = (3 + 4 c_0) / 2
+$
+
+また、
+
+$
+c_n = 2 / n c_(n-1) = 2/n times 2/(n-1) c_(n-2) = dots = 2/n times 2/(n-1) times dots times c_2 \
+$
+
+よって、
+
+$
+c_n = cases(
+  (a - 3) / 4 "if" n = 0,
+  (a - 1) / 2 "if" n = 1,
+  2^(n - 2) / n! a "if" n > 1,
+)
+$
+
+これより、
+
+$
+y(x) &= sum_(i = 2)^(infinity) 2^(n - 2) / n! a x^n + (a - 1) / 2 x + (a - 3) /4 \
+     &= sum_(i = 2)^(infinity) 2^(n - 2) / n! a x^n + (a x) / 2 - x / 2 + (a - 3) /4 \
+     &= sum_(i = 1)^(infinity) 2^(n - 2) / n! a x^n - x / 2 + a/4 - 3/4 \
+     &= a/4 sum_(i = 0)^(infinity) 2^n / n! x^n - x / 2 - 3/4 \
+     &= a/4 e^(2x) - x / 2 - 3/4 \
+$
+
 === (2)
+
+$x = 0$ で $p(x), q(x)$ は解析的である。
+
+$
+y = sum_(n = 0)^(infinity) c_n x^n
+$
+
+とおくと、
+
+$
+x y' = x sum_(n = 1)^(infinity) n c_n x^(n - 1) = sum_(n = 0)^(infinity) n c_n x^n
+$
+
+$x^n$ の項を比較する。
+
++ $n = 2$ のとき、$c_2 = 1 + 2 c_2$ よって、$c_2 = -1$
++ $n != 2$ のとき、$c_n = n c_n$ よって、$c_n = 0$
+
+これより、
+
+$
+y = - x^2
+$
+
 === (3)
+
+$x = 0$ で $p(x), q(x)$ は解析的である。
+
+$
+y = sum_(n = 0)^(infinity) c_n x^n
+$
+
+とおくと、
+
+$
+x y' = x sum_(n = 1)^(infinity) n c_n x^(n - 1) = sum_(n = 0)^(infinity) n c_n x^n
+$
+$
+(x^2 - 1) y''
+&= (x^2 - 1) sum_(n = 2)^(infinity) n (n - 1) c_n x^(n - 2) \
+&= sum_(n = 2)^(infinity) n (n - 1) c_n x^n
+  - sum_(n = 2)^(infinity) n (n - 1) c_n x^(n - 2) \
+&= sum_(n = 0)^(infinity) n (n - 1) c_n x^n
+  - sum_(n = 0)^(infinity) (n + 1) (n + 2) c_(n + 2) x^n \
+
+$
+
+
+$x^n$ の項を比較する。
+
+$
+n(n - 1) c_n - (n + 1)(n + 2) c_(n + 2) + 2 n c_n - 2 c_n = 0 \
+=> - (n + 1)(n + 2) c_(n + 2) + (2 n - 2 + n(n - 1)) c_n = 0 \
+=> - (n + 1)(n + 2) c_(n + 2) + (n^2 + n - 2) c_n = 0 \
+=> (n + 1)(n + 2) c_(n + 2) = (n^2 + n - 2) c_n \
+=> c_(n + 2) = ((n - 1)(n + 2)) / ((n + 1)(n + 2)) c_n \
+
+therefore c_(n+2) = (n - 1) / (n + 1) c_n
+= (n - 1) / (n + 1) dot (n - 3) / (n - 1) c_(n - 2) = dots
+$
+
+よって、
+
++ $n$ が偶数のとき、
+  $
+  c_(n+2) &= (n - 1) / (n + 1) times (n - 3) / (n - 1) times dots times 1/3 times c_0 \
+          &= 1/(n+1) c_0
+  $
+
++ $n$ が奇数のとき、
+  $
+  c_(n+2) &= (n - 1) / (n + 1) times (n - 3) / (n - 1) times dots times 0/2 times c_1 \
+          &= 0
+  $
+
+よって、
+
+$
+y(x) = a sum_(n = 0)^infinity 1/(2n) x^(2n+1)
+$
