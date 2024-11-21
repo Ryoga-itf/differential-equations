@@ -360,5 +360,6 @@ $
 よって、
 
 $
-y(x) = a sum_(n = 0)^infinity 1/(2n - 1) x^(2n) + b x
+y(x) &= a sum_(n = 0)^infinity 1/(2n - 1) x^(2n) + b x \
+     &= (a x)/2 log abs((1 + x) / (1 - x)) + b x
 $
