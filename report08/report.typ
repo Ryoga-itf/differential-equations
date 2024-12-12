@@ -663,3 +663,34 @@ $
 #pagebreak()
 
 == 問題3
+
+ルジャンドルの多項式より
+
+$
+P_0(x) &= 1 \
+P_1(x) &= x \
+P_2(x) &= 3/2 x^2 - 1/2 \
+$
+
+よって $f(x)$ は以下のように表せられる。
+
+$
+f(x) &= alpha P_2(x) + beta P_1(x) + gamma P_0 (x) \
+     &= alpha (3/2 x^2 - 1/2) + beta x + gamma \
+     &= 3/2 alpha x^2 + beta x - alpha /2  + gamma \
+$
+
+$f(x) = a x^2 + b x + c$ と係数を比較して
+
+$
+a = 3/2 alpha \
+b = beta \
+c = -alpha/2 + gamma
+$
+
+よって、
+$
+alpha = 2/3 a \
+beta = b \
+gamma = c + 1/3 a
+$
