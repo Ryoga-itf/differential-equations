@@ -125,6 +125,8 @@ $
 
 よって、一般解は与えられたものに一致することが確認できた。
 
+#pagebreak()
+
 === (2)
 
 形式解を $y = x^k sum^(infinity)_(n=0) c_n x^n$ とおくと、
@@ -535,10 +537,129 @@ $
 
 よって、一般解は与えられたものに一致することが確認できた。
 
+#pagebreak()
+
 == 問題2
 
 === (1)
+
+$F(1, 1, 2; -x)$ のとき、
+
+$
+c_n
+  &= (1 dot (1 + 1) dot dots.c dot (1 + n - 1) dot 1 dot (1 + 1) dot dots.c dot (1 + n -1))
+    / (n! dot 2 dot (2 + 1) dot (2 + 2) dot dots.c dot (2 + n - 1)) \
+  =& (n! dot n!) / (n! dot (n+1)!) \
+  =& 1/(n+1)
+$
+
+よって、
+
+$
+F(1, 1, 2; -x) &= sum^(infinity)_(n=0) c_n (-x)^n \
+               &= sum^(infinity)_(n=0) (-x)^n/(n+1) \
+               &= 1 - 1/2 x + 1/3 x^2 + dots.c
+$
+
+ここで、$log(1 + x)$ をマクローリン展開すると、以下のようになる。
+
+$
+log(1 + x) &= x - x^2/2 + x^3/3 - dots.c \
+           &= sum^(infinity)_(n=0) (-1)^n x^(n+1)/(n+1)
+$
+
+この両辺に $1/x$ を掛けると
+
+$
+1/x log(1 + x) = sum^(infinity)_(n=0) (-x)^(n)/(n+1)
+$
+
+よって、
+
+$
+F(1, 1, 2; -x) &= 1/x log(1 + x)
+$
+
+#pagebreak()
+
 === (2)
+
+$F(-a, b, b; -x)$ のとき、
+
+$
+c_n
+  &= (-a dot (-a + 1) dot dots.c dot (-a + n - 1) dot b dot (b + 1) dot dots.c dot (b + n -1))
+    / (n! dot b dot (b + 1) dot (b + 2) dot dots.c dot (b + n - 1)) \
+  &= (-a dot (-a + 1) dot dots.c dot (-a + n - 1)) / (n!) \
+$
+
+よって、
+
+$
+F(-a, b, b; -x) &= sum^(infinity)_(n=0) c_n (-x)^n \
+                &= sum^(infinity)_(n=0) (-a dot (-a + 1) dot dots.c dot (-a + n - 1)) / (n!) (-x)^n
+$
+
+ここで、$(1 + x)^a$ をマクローリン展開すると、以下のようになる。
+
+$
+(1 + x)^a &= 1 - a x + a(a-1)/2! x^2 - dots.c \
+          &= sum^(infinity)_(n=0) (-a dot (-a + 1) dot dots.c dot (-a + n - 1)) / n! (-x)^n
+$
+
+よって、
+
+$
+F(-a, b, b; -x) &= (1 + x)^a
+$
+
+#pagebreak()
+
 === (3)
+
+$F(-k, b, c; x)$ のとき、
+
+$
+c_n
+  &= (-k dot (-k + 1) dot dots.c dot (-k + n - 1) dot b dot (b + 1) dot dots.c dot (b + n -1))
+    / (n! dot c dot (c + 1) dot (c + 2) dot dots.c dot (c + n - 1)) \
+  &= (-k/1) dot (-(k-1)/2) dot dots.c dot (-(k - n + 1)/n) dot b/c dot (b+1)/(c+1) dot dots.c dot (b+n-1)/(c+n-1)
+$
+
+ここで、
+
+$
+(-k/1) dot (-(k-1)/2) dot dots.c dot (-(k - n + 1)/n)
+$
+
+の部分に注目してみる。
+より形式的に書くと $1 < i < n$ である $i$ を用いて、
+
+$
+(-k/1) dot (-(k-1)/2) dot dots.c dot (-(k-i)/i) dot dots.c dot (-(k - n + 1)/n)
+$
+
+と書ける。$k > n$ であるとき、
+$k - i = 0 <=> k = i$ となる $i$ が存在する。
+
+よって、$k > n$ であるとき、
+
+$
+(-k/1) dot (-(k-1)/2) dot dots.c dot (-(k-i)/i) dot dots.c dot (-(k - n + 1)/n) = 0
+$
+
+以上より、
+
+$
+F(-k, b, c; x) &= sum^(infinity)_(n=0) c_n x^n \
+               &= sum^(infinity)_(n=0)
+                 (-k dot (-k + 1) dot dots.c dot (-k + n - 1) dot b dot (b + 1) dot dots.c dot (b + n -1))
+                 / (n! dot c dot (c + 1) dot (c + 2) dot dots.c dot (c + n - 1))
+                 x^n
+$
+
+は高々 $k$ 次の多項式である。
+
+#pagebreak()
 
 == 問題3
