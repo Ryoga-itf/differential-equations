@@ -388,7 +388,152 @@ $
 
 よって、一般解は与えられたものに一致することが確認できた。
 
+#pagebreak()
+
 === (4)
+
+形式解を $y = x^k sum^(infinity)_(n=0) c_n x^n$ とおくと、
+
+$
+y   &= sum^(infinity)_(n=0) c_n x^(n+k) \
+y'  &= sum^(infinity)_(n=0) (n+k) c_n x^(n+k-1) \
+y'' &= sum^(infinity)_(n=0) (n+k)(n+k-1) c_n x^(n+k-2) \
+$
+
+これを与えられた微分方程式に代入すると、
+
+$
+(x^2 + x/2) (sum^(infinity)_(n=0) (n+k)(n+k-1) c_n x^(n+k-2))
+  + sum^(infinity)_(n=0) (n+k) c_n x^(n+k-1)
+  - 2 (sum^(infinity)_(n=0) c_n x^(n+k))
+  = 0 \
+=>
+  sum^(infinity)_(n=0) (n+k)(n+k-1) c_n x^(n+k)
+  + sum^(infinity)_(n=0) 1/2 (n+k)(n+k-1) c_n x^(n+k-1)
+  + sum^(infinity)_(n=0) (n+k) c_n x^(n+k-1)
+  - sum^(infinity)_(n=0) 2 c_n x^(n+k)
+  = 0 \
+=>
+  sum^(infinity)_(n=0) { (n+k)(n+k-1) - 2 } c_n x^(n+k)
+  + sum^(infinity)_(n=0) { (n+k) (1/2 (n+k-1) + 1) } c_n x^(n+k-1)
+  = 0 \
+=>
+  sum^(infinity)_(n=0) (n+k-2)(n+k+1) c_n x^(n+k)
+  + 1/2 sum^(infinity)_(n=0) (n+k)(n+k+1) c_n x^(n+k-1)
+  = 0 \
+=>
+  sum^(infinity)_(n=1) (n+k-3)(n+k) c_(n-1) x^(n+k-1)
+  + 1/2 sum^(infinity)_(n=0) (n+k)(n+k+1) c_n x^(n+k-1)
+  = 0 \
+=>
+  k(k+1) c_0 x^(k-1)
+  + sum^(infinity)_(n=1) (n+k-3)(n+k) c_(n-1) x^(n+k-1)
+  + 1/2 sum^(infinity)_(n=1) (n+k)(n+k+1) c_n x^(n+k-1)
+  = 0 \
+=>
+  k(k+1) c_0 x^(k-1)
+  + sum^(infinity)_(n=1) { (n+k-3)(n+k) c_(n-1) + 1/2 (n+k)(n+k+1) c_n } x^(n+k-1)
+  = 0 \
+$
+
+$x^(k-1)$ の係数が $0$ になるようにすると、指数 $k$ は $k = 0, -1$ となる。
+
+$k = 0$ のとき、
+漸化式は
+
+$
+(n-3)n c_(n-1) + 1/2 n(n+1) c_n = 0 \
+=> -(n+1) c_n = 2 (n-3) c_(n-1) \
+=> c_n = -(2 (n-3)) / (n+1)  c_(n-1) \
+$
+
+よって、
+
+$
+c_n &= (-(2(n-3))/(n+1)) dot (-(2((n-1)-3))/((n-1)+1)) dot dots.c dot (-(2(1-3))/(1+1)) dot c_0 \
+    &= (-1)^n { (2(n-3))/(n+1) dot (2((n-1)-3))/((n-1)+1) dot dots.c dot (2(1-3))/(1+1) } dot c_0 \
+    &= (-1)^n dot 2^n { (n-3)/(n+1) dot ((n-1)-3)/(n) dot dots.c dot (1-3)/(2) } dot c_0 \
+$
+
+$
+    &= (-1)^n dot 2^n { (n-3)/(n+1) dot (n-4)/(n) dot dots.c dot (-2)/(2) } dot c_0 \
+    &= (-1)^n dot 2^n { (n-3)/(n+1) dot (n-4)/(n) dot dots.c dot (0)/4 dot (-1)/3 dot (-2)/(2) } c_0 \
+$
+
+すなわち、
+
+$
+c_n = cases(
+  c_0     "if" n=0,
+  2 c_0   "if" n=1,
+  4/3 c_0 "if" n=2,
+  0       "otherwise"
+)
+$
+
+
+これを形式解 $y = x^k sum^(infinity)_(n=0) c_n x^n$ に代入することにより、
+
+$
+y_1 &= x^0 sum^(infinity)_(n=0) c_n x^n \
+    &= c_0 x^0 + 2 c_0 x^1 + 4/3 c_0 x^2 \
+    &= c_0 (1 + 2 x + 4/3 x^2) \
+$
+
+$k = -1$ のとき、
+漸化式は
+
+$
+(n-4)(n-1) c_(n-1) + 1/2 (n-1)n c_n = 0 \
+=> -n c_n = 2(n-4) c_(n-1) \
+=> c_n = -(2(n-4))/n c_(n-1) \
+$
+
+よって、
+
+$
+c_n &= (-(2(n-4))/n) dot (-(2((n-1)-4))/(n-1)) dot dots.c dot (-(2(1-4))/1) dot c_0  \
+    &= (-1)^n dot 2^n dot { (n-4)/n dot ((n-1)-4)/(n-1) dot dots.c dot (1-4)/1 } dot c_0  \
+    &= (-1)^n dot 2^n dot { (n-4)/n dot (n-5)/(n-1) dot dots.c dot (-3)/1 } dot c_0  \
+    &= (-1)^n dot 2^n dot { (n-4)/n dot (n-5)/(n-1) dot dots.c dot 0/4 dot (-1)/3 dot (-2)/2 dot (-3)/1 } dot c_0  \
+$
+
+すなわち、
+
+$
+c_n = cases(
+  c_0     "if" n=0,
+  c_1     "if" n=1,
+  2 c_1   "if" n=2,
+  4/3 c_1 "if" n=3,
+  0       "otherwise"
+)
+$
+
+
+これを形式解 $y = x^k sum^(infinity)_(n=0) c_n x^n$ に代入することにより、
+
+$
+y_2 &= x^(-1) sum^(infinity)_(n=0) c_n x^n \
+    &= 1/x ( c_0 x^0 + c_1 x^1 + 2 c_1 x^2 + 4/3 c_1 x^3 ) \
+    &= c_0/x + c_1 + 2 c_1 x + 4/3 c_1 x^2
+$
+
+基本解は、$y = y_1 + y_2$ と表されるから、
+
+$
+y &= c_0 (1 + 2 x + 4/3 x^2) + (c_0/x + c_1 + 2 c_1 x + 4/3 c_1 x^2) \
+  &= c_0 (1 + 2 x + 4/3 x^2) + c_0/x + c_1(1 + 2 x + 4/3 x^2) \
+  &= c_0/x + (c_0 + c_1) (1 + 2 x + 4/3 x^2) \
+$
+
+$a = c_0, b = (c_0 + c_1)$ とおくと、
+
+$
+y = a/x + b(1 + 2x + 4/3 x^2)
+$
+
+よって、一般解は与えられたものに一致することが確認できた。
 
 == 問題2
 
